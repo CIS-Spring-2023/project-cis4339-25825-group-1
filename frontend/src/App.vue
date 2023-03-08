@@ -62,7 +62,7 @@ export default {
                   class="material-icons"
                   >search</span
                 >
-                Find Client
+                Find Clients
               </router-link>
             </li>
             <li>
