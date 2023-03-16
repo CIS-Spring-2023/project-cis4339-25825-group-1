@@ -85,6 +85,15 @@ export default {
                 Login
               </router-link>
             </li>
+            <li>
+              <router-link to="/pie">
+                <span
+                  style="position: relative; top: 6px"
+
+                  ></span>
+                Zipcode Distribution
+              </router-link>
+            </li>
           </ul>
         </nav>
       </header>

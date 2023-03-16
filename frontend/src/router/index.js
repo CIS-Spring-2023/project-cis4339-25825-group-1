@@ -44,6 +44,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('../components/loginPage.vue')
+  },
+  {
+    path: '/pie',
+    name: 'pie',
+    component: () => import('../components/pieChart.vue')
   }
 ]
 const router = createRouter({
