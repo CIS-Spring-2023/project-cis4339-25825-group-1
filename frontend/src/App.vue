@@ -76,6 +76,16 @@ export default {
               </router-link>
             </li>
             <li>
+              <router-link to="/services">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >search</span
+                >
+                Find Services Provided
+              </router-link>
+            </li>
+            <li>
               <router-link to="/login">
                 <span
                   style="position: relative; top: 6px"
