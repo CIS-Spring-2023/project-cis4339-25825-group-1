@@ -1,7 +1,5 @@
 <script>
-import useVuelidate from '@vuelidate/core'
 import { required, email, alpha, numeric } from '@vuelidate/validators'
-import { login } from '@/routes/login.js'
 const apiURL = import.meta.env.VITE_ROOT_API
 export default {
   data() {
@@ -15,7 +13,10 @@ export default {
     // Call the login function from login.js
     async onLogin() {
       try {
-        const response = await login(this.email, this.password)
+        const response = await axios.post('/api/login', {
+          email: this.email,
+          password: this.password
+        })
         // Redirect the user to the homepage if the login was successful
         if (response.status === 200) {
           this.$router.push('/')
