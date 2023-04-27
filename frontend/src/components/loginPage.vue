@@ -1,7 +1,7 @@
 <script>
 import useVuelidate from '@vuelidate/core'
 import { required, email, alpha, numeric } from '@vuelidate/validators'
-import { login } from '@/api/login.js'
+import { login } from '@/routes/login.js'
 const apiURL = import.meta.env.VITE_ROOT_API
 export default {
   data() {
