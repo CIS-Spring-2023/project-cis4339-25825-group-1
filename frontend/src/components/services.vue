@@ -59,7 +59,7 @@ export default {
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
       >
-        <h2 class="text-2xl font-bold">Search Event</h2>
+        <h2 class="text-2xl font-bold">Search Service</h2>
         <!-- Displays Event Name search field -->
         <div class="flex flex-col">
           <select
@@ -131,6 +131,35 @@ export default {
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+    <!-- CRUD Operations -->
+    <div class="px-10 pb-10">
+      <div class="flex flex-row justify-center gap-4">
+        <button
+          class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+          @click="createService"
+        >
+          Create Service
+        </button>
+        <button
+          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          @click="readService"
+        >
+          Read Service
+        </button>
+        <button
+          class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded"
+          @click="updateService"
+        >
+          Update Service
+        </button>
+        <button
+          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+          @click="deleteService"
+        >
+          Delete Service
+        </button>
       </div>
     </div>
   </main>
