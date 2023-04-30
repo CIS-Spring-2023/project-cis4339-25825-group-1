@@ -6,13 +6,35 @@ export default {
   name: 'App',
   data() {
     return {
-      orgName: 'Dataplatform'
+      orgName: 'Dataplatform',
+      role: false
     }
   },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
       this.orgName = res.data.name
     })
+  },
+  computed:{
+    isLoggedIn(){
+      return !!window.sessionStorage.getItem('user')
+    }
+  },
+  methods:{
+    loginCheck(){
+      return sessionStorage.getItem('user')
+    },
+    logout(){
+      sessionStorage.clear()
+      this.$router.push({name: 'home'}).then(()=>{this.$router.go()})
+    },
+    userCheck(){
+      const roleValidate = JSON.parse(sessionStorage.getItem('user')).roles
+
+      if(roleValidate === 'editor'){
+        return true
+      }
+    }    
   }
 }
 </script>
@@ -36,63 +58,19 @@ export default {
               </router-link>
             </li>
             <li>
-              <router-link to="/intakeform">
+              <router-link v-if="!loginCheck()" to="/login">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
-                  >people</span
-                >
-                Client Intake Form
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/eventform">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >event</span
-                >
-                Create Event
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/findclient">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >search</span
-                >
-                Find Client
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/findevents">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >search</span
-                >
-                Find Event
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/services">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >search</span
-                >
-                Find Services Provided
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/login">
-                <span
-                  style="position: relative; top: 6px"
-                  class="material-icons"
-                  >login</span
-                >
+                  >login</span>
                 Login
+              </router-link>
+              <router-link v-if="loginCheck()" v-on:click="logout()" to="/">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >logout</span>
+                Logout
               </router-link>
             </li>
             <li>
@@ -102,6 +80,56 @@ export default {
 
                   ></span>
                 Zipcode Distribution
+              </router-link>
+            </li>            
+            <li>
+              <router-link v-if="loginCheck()" to="/findclient">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >search</span
+                >
+                Find Client
+              </router-link>
+            </li>
+            <li>
+              <router-link v-if="loginCheck()" to="/findevents">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >search</span
+                >
+                Find Event
+              </router-link>
+            </li>
+            <li>
+              <router-link v-if="loginCheck()" to="/services">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >search</span
+                >
+                Find Services Provided
+              </router-link>
+            </li>
+            <li>
+              <router-link v-if="loginCheck() && userCheck()"  to="/intakeform">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >people</span
+                >
+                Client Intake Form
+              </router-link>
+            </li>
+            <li>
+              <router-link v-if="loginCheck() && userCheck()" to="/eventform">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >event</span
+                >
+                Create Event
               </router-link>
             </li>
           </ul>

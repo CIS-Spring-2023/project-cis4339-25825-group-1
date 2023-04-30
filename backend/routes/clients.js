@@ -6,6 +6,44 @@ const org = process.env.ORG
 // importing data model schemas
 const { clients } = require('../models/models')
 
+/*
+// Route to get clients by zip code
+router.get("/clients-by-zipcode", async (req, res) => {
+  try {
+    // Get the clients collection from the database
+    const collection = client.db("mydatabase").collection("clients");
+
+    // Aggregate the clients by zip code and count the number of clients in each zip code
+    const results = await collection.aggregate([
+      {
+        $group: {
+          _id: "$zipCode",
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          zipCode: "$_id",
+          count: 1,
+        },
+      },
+    ]).toArray();
+
+    // Convert the results to an object with zip codes as keys and counts as values
+    const data = {};
+    for (const { zipCode, count } of results) {
+      data[zipCode] = count;
+    }
+
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred while fetching the data");
+  }
+});
+*/
+
 // GET 10 most recent clients for org
 router.get('/', (req, res, next) => {
   clients
