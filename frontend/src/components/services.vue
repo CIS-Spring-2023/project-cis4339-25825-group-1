@@ -31,8 +31,9 @@ export default {
       this.getServices()
     },
     editService(serviceID) {
-      this.$router.push({ name: 'servicedetails', params: { id: serviceID } })
+      this.$router.push({ name: 'editservice', params: { id: serviceID } })
     }
+
   }
 }
 </script>
@@ -115,7 +116,7 @@ export default {
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-300">
-            <tr
+           <tr
               @click="editService(service._id)"
               v-for="service in services"
               :key="service._id"
@@ -133,21 +134,9 @@ export default {
       <div class="flex flex-row justify-center gap-4">
         <button
           class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-          @click="$router.push('createservice')"
+          @click="$router.push('createService')"
         >
           Create Service
-        </button>
-        <button
-          class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded"
-          @click="updateService"
-        >
-          Update Service
-        </button>
-        <button
-          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-          @click="deleteService"
-        >
-          Delete Service
         </button>
       </div>
     </div>

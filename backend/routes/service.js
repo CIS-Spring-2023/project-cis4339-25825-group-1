@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET a service by id
+/* GET a service by id
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
@@ -30,6 +30,19 @@ router.get('/:id', async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     }
   });
+  */
+  router.get('/:id', (req, res, next) => {
+    // use findOne instead of find to not return array
+    services.findOne({ _id: req.params.id, orgs: org }, (error, data) => {
+      if (error) {
+        return next(error)
+      } else if (!data) {
+        res.status(400).send('Client not found')
+      } else {
+        res.json(data)
+      }
+    })
+  })
 
 // POST a new service
 router.post('/', (req, res) => {
