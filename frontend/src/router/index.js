@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
+    name: 'home',
     props: true,
     component: () => import('../components/homePage.vue')
   },
@@ -54,6 +55,17 @@ const routes = [
     path: '/services',
     name: 'services',
     component: () => import('../components/services.vue')
+  },
+  {
+    path: '/createservice',
+    name: 'createservice',
+    component: () => import('../components/createService.vue')
+  },
+  {
+    path: '/editservice/:id',
+    name: 'editservice',
+    props: true,
+    component: () => import('../components/editService.vue')
   }
 ]
 const router = createRouter({

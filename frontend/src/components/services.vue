@@ -16,15 +16,6 @@ export default {
     this.getServices()
   },
   methods: {
-    handleSubmitForm() {
-      let endpoint = ''
-      if (this.searchBy === 'Service Name') {
-        endpoint = `services/search/?name=${this.name}&searchBy=name`
-      }
-      axios.get(`${apiURL}/${endpoint}`).then((res) => {
-        this.services = res.data
-      })
-    },
     // abstracted method to get services
     getServices() {
       axios.get(`${apiURL}/services`).then((res) => {
@@ -40,8 +31,9 @@ export default {
       this.getServices()
     },
     editService(serviceID) {
-      this.$router.push({ name: 'servicedetails', params: { id: serviceID } })
+      this.$router.push({ name: 'editservice', params: { id: serviceID } })
     }
+
   }
 }
 </script>
@@ -119,15 +111,19 @@ export default {
           <thead class="bg-gray-50 text-xl">
             <tr>
               <th class="p-4 text-left">Service Name</th>
+              <th class="p-4 text-left">Availability</th>
+              <th class="p-4 text-left">Description</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-300">
-            <tr
+           <tr
               @click="editService(service._id)"
               v-for="service in services"
               :key="service._id"
             >
               <td class="p-2 text-left">{{ service.name }}</td>
+              <td class="p-2 text-left">{{ service.status }}</td>
+              <td class="p-2 text-left">{{ service.description }}</td>
             </tr>
           </tbody>
         </table>
@@ -138,27 +134,9 @@ export default {
       <div class="flex flex-row justify-center gap-4">
         <button
           class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-          @click="createService"
+          @click="$router.push('createService')"
         >
           Create Service
-        </button>
-        <button
-          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-          @click="readService"
-        >
-          Read Service
-        </button>
-        <button
-          class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded"
-          @click="updateService"
-        >
-          Update Service
-        </button>
-        <button
-          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-          @click="deleteService"
-        >
-          Delete Service
         </button>
       </div>
     </div>

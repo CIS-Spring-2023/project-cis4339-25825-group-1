@@ -64,7 +64,14 @@ export default {
         alert('Event has been deleted.')
         this.$router.push({ name: 'findevents' })
       })
-    }
+    },
+    userCheck(){
+      const roleValidate = JSON.parse(sessionStorage.getItem('user')).roles
+
+      if(roleValidate === 'editor'){
+        return true
+      }
+    } 
   },
   // sets validations for the various data properties
   validations() {
@@ -286,6 +293,7 @@ export default {
         >
           <div class="flex justify-between mt-10 mr-20">
             <button
+              v-if="userCheck()"
               @click="handleEventUpdate"
               type="submit"
               class="bg-green-700 text-white rounded"
@@ -295,6 +303,7 @@ export default {
           </div>
           <div class="flex justify-between mt-10 mr-20">
             <button
+              v-if="userCheck()"
               @click="eventDelete"
               type="submit"
               class="bg-red-700 text-white rounded"
