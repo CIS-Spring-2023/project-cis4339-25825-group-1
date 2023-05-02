@@ -39,6 +39,7 @@ app.use('/events', require('./routes/events'))
 app.use('/org', require('./routes/org'))
 app.use('/login', require('./routes/login'))
 app.use('/services', require('./routes/service'))
+app.use('/pieChart', require('./routes/pieChart'))
 
 
 app.listen(PORT, () => {
