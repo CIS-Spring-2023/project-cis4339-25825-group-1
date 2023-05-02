@@ -11,7 +11,7 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
-// Connect to MongoDB Atlas
+// Connect to the MongoDB Atlas
 client.connect((error) => {
   if (error) {
     console.error("Failed to connect to MongoDB Atlas: ", error);
